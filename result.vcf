@@ -1,0 +1,4 @@
+#CHROM	POS	REF	ALT	ID	FILTER	INFO
+reference	5	C	G	.	.	.
+reference	20	T	G	.	.	.
+reference	35	A	G	.	.	.
