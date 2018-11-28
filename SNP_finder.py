@@ -30,7 +30,8 @@ def variant_sites(fq_seqs, refseq): #to get sites that are variant
                     var_indices.append(index)
     return(var_sites)
 
-def vars_to_vcf(var_sites, chromosome, outfile): #to write the information to an outfile and get chromosome
+def vars_to_vcf(var_sites, chromosome, outfile): #to write the information to an outfile and
+ get chromosome
     """takes a list of tuples and returns .vcf file with tab separated values of CHR, POS, REF, ALT, ID, FILTER, INFO
     var_sites : list of tuples
     chromosome : str
@@ -61,7 +62,7 @@ if __name__ == '__main__':
         reffile = sys.argv[3]
         print('i got executed')
     except IndexError:
-        print("Usage: ./program_A.py [fastq_file] [outfile] [reffile]")
+        print("Usage: ./SNP_finder.py [fastq_file] [outfile] [reffile]")
         sys.exit(1)
     vcf_file(fastq_file, outfile, reffile)
 sys.exit(0)
