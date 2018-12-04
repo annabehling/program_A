@@ -5,18 +5,8 @@ from Bio import SeqIO #SeqIO already has methods like convert and others
 def fasta_file(fastq_file, outfile):
 	"""convert fastq file to fasta file
 	fastq_file : path to a .fq file (str)
-	outfile : path to a .fasta file that will be created (str)"""
+	outfile : path to a .fna file that will be created (str)"""
 	SeqIO.convert(fastq_file,'fastq',outfile,'fasta')
-
-def fastq_sequence(fastq_file, outfile):
-    """takes a fastq file and writes all sequences to a new file
-    fastq_file : path to a .fq file (str)
-    outfile : path to a new file containing output sequences (str)"""
-    with open (infile) as fastq_file:
-        outhandle = open(outfile, "w")
-        for i,line in enumerate(fastq_file):
-            if i % 4 == 1:
-                outhandle.write(line)
 
 def variant_sites(fq_seqs, refseq): #to get sites that are variant, in case you want to do things other than make a vcf file
     """takes 2 sequences and returns the position of the variant site and the nucleotide variants
@@ -45,27 +35,20 @@ def vars_to_vcf(var_sites, contig_name, outfile): #to write the set of variants 
     for POS, REF, ALT in var_sites:
         outhandle.write('{}\t{}\t{}\t{}\t.\t.\t.\n'.format(contig_name, POS, REF, ALT))
 
-#def vcf_file(fastq_file, reffile):
-    """overarching function that calls in variant_sites, vars_to_vcf
-    fastq_file : path to a .fq file (str)
-    reffile : path to the reference sequence file (str)"""
-    chromosome = SeqIO.read(reffile,format='fasta') #seqIO.parse to get any reference seq
-    fq = SeqIO.parse(fastq_file,format='fastq') #seqIO.parse to get any fastq file
-    result = variant_sites(fq, chromosome)
-    return(result)
-
-if __name__ == '__main__': #only need this for command line executable. Not relevant for ipython notebook usage
+if __name__ == '__main__': #only need this for command line executable. Not relevant for ipython notebook usage. only thing that gets called whehn you use the script
     try:
         fastq_file = sys.argv[1]
-        outfile = sys.argv[2]
+        base_name = sys.argv[2]
         reffile = sys.argv[3]
     except IndexError:
-        print("Usage: ./SNP_finder.py [fastq_file] [outfile.vcf] [reffile]") #./ is there so if there's a program else where called SNP_finder.py, it will execute this one
+        print("Usage: ./SNP_finder.py [fastq_file] [outfile_base_name] [reffile]") #./ is there so if there's a program else where called SNP_finder.py, it will execute this one
         sys.exit(1)
     chromosome = SeqIO.read(reffile,format='fasta') #seqIO.parse to get any reference seq
     fq = SeqIO.parse(fastq_file,format='fastq') #seqIO.parse to get any fastq file
     result = variant_sites(fq, chromosome)
-    vars_to_vcf(result, chromosome.id, outfile) #outputs .vcf file
+    vars_to_vcf(result, chromosome.id, base_name+'.vcf') #outputs .vcf file
+    fasta_file(fastq_file, base_name+'.fna') #outputs .fna file
+
 sys.exit(0)
 
 #chmod u+x SNP_finder.py to make it executable. very last thing to do at the end of the script
