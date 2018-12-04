@@ -1,9 +1,0 @@
-#!/usr/bin/env python3
-import sys
-
-def fasta_file(infile, outfile)
-	"""convert fastq file to fasta file"""
-	from Bio import SeqIO
-	SeqIO.convert('infile','fastq','output','outfile')
-
-def VCF_file(
