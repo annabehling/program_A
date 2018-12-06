@@ -26,7 +26,7 @@ Input format:
 ```
 ./SNP_finder.py input.fq test_run reference.fna
 ```
-Your output files should be `test_run.fna` and `test_run.vcf`, which have also been provided as example files.
+Your output files should match `example.fna` and `example.vcf`, which have been provided as example output files.
 
 ## Acknowledgements
 
