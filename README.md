@@ -1,4 +1,4 @@
-# SNP finder
+# SNP_finder
 
 SNP_finder.py reads in a FASTQ file containing aligned reads (.fq) and a reference sequence file (.fna), and outputs two results files: a file listing all reads, unmodified in FASTA format (.fna); and a file listing only the variable sites in VCF format (.vcf).
 
