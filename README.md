@@ -11,11 +11,22 @@ This program was developed to the specifications of the Program A assignment for
 
 ## Usage
 
+The basic usage of the program is:
 ```
 ./SNP_finder.py [fastq_file] [outfile_base_name] [reffile]
 ```
-Produces two files:
-`outfile_base_name.fna` and `outfile_base_name.fq`
+Which produces two files:
+`outfile_base_name.fna` and `outfile_base_name.vcf`
+
+## Example Usage
+
+To perform a test run of SNP_finder.py using the example data files provided:
+
+Input format:
+```
+./SNP_finder.py input.fq test_run reference.fna
+```
+Your output files should be `test_run.fna` and `test_run.vcf`, which have also been provided as example files.
 
 ## Acknowledgements
 
